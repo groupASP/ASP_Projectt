@@ -99,7 +99,7 @@ canvas = Canvas(
 
 canvas.place(x = 0, y = 0)
 
-background_img = PhotoImage(file = "ASP/Image/bg_face.png")
+background_img = PhotoImage(file = "ASP/Image/bg_insert_face.png")
 background = canvas.create_image(
     950.0, 540.0,
     image=background_img)
