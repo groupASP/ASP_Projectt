@@ -19,7 +19,7 @@ def insert():
     if(value == 'yes'):
         sql_insert = "insert into tb_subject values('"+s_Id+"','"+s_Name+"');"
         conn.execute(sql_insert)
-        connection
+        connection.commit()
         messagebox.showinfo("ການສະແດງຜົນ","ທ່ານໄດ້ເພີ່ມຂໍ້ມູນສຳເລັດແລ້ວ")
     en.delete(0,END)
     en1.delete(0,END)
@@ -42,7 +42,7 @@ canvas = Canvas(
     relief = "ridge")
 canvas.place(x = 0, y = 0)
 
-background_img = PhotoImage(file = f"ASP/Image/bg_insert.png")
+background_img = PhotoImage(file = f"ASP/Image/bg_insert_subject.png")
 background = canvas.create_image(
     950.0, 540.0,
     image=background_img)

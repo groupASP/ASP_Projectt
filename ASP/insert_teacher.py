@@ -109,7 +109,6 @@ lb11.config(font=("Saysettha OT", 18),bg="#ECF8DC")
 # Entry
 en_id = tkinter.Entry(frm,width=18)
 en_id.place(x=200, y=150)
-# en=enID.get().encode('utf-8')
 en_id.config(font=("Saysettha OT",18),width=18)
 
 en_name = tkinter.Entry(frm)

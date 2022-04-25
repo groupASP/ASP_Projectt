@@ -36,7 +36,7 @@ def room():
     window1.withdraw()
     os.system("D:\ASP_Project\ASP\\Room.py")
 
-def Sub():
+def subb():
     window1.withdraw()
     os.system("D:\ASP_Project\ASP\\Subject.py")
 
@@ -104,7 +104,7 @@ b3 = Button(
     image = img3,
     borderwidth = 0,
     highlightthickness = 0,
-    command = sub,
+    command = subb,
     relief = "flat")
 
 b3.place(

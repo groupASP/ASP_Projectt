@@ -164,7 +164,7 @@ btAdd = Button(
     relief = "flat")
 
 btAdd.place(
-    x = 900, y = 650,)
+    x = 900, y = 690,)
 
 img2 = PhotoImage(file = f"ASP/Image/back.png")
 btBack = Button(
@@ -175,7 +175,7 @@ btBack = Button(
     relief = "flat")
 
 btBack.place(
-    x = 400, y = 650,)
+    x = 400, y = 690,)
 
 
 frm.mainloop()
