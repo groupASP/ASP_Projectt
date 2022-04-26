@@ -23,15 +23,14 @@ frm.configure(background='snow')
 # def del_sc2():
 #     sc2.destroy()
 def clear():
-    en_id.delete(first=0, last=22)
     en_name.delete(first=0, last=22)
     en_surname.delete(first=0, last=22)
-    en_id.focus()
+    en_name.focus()
 
 def getId():
     connection = pymysql.connect(host="localhost", user="root", password="", database="asp_base")
     conn = connection.cursor()
-    sql = "SELECT F_ID FROM tb_face order by F_ID desc limit 1;"
+    sql = "SELECT f_Id FROM tb_face order by f_Id desc limit 1;"
     conn.execute(sql)
     profile=None
     for row in conn:
@@ -47,7 +46,8 @@ def insertOrUpdate():
     Id = oid+1
     Name=en_name.get()
     Surname=en_surname.get()
-    S_Id = en_id.get()
+    st_Id = cb.get()
+    t_Id = cb1.get()
     faceDetect = cv2.CascadeClassifier('ASP/Detect/haarcascade_frontalface_default.xml')
     cam = cv2.VideoCapture(0)
     cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)  # set new dimensionns to cam object (not cap)
@@ -57,7 +57,7 @@ def insertOrUpdate():
     sql = "Select * from tb_face;"
     conn.execute(sql)
 
-    sql="Insert into tb_face(F_ID, Name, SURNAME, S_ID) values('"+str(Id)+"', '"+str(Name)+"', '"+str(Surname)+"', '"+str(S_Id)+"');"
+    sql="Insert into tb_face(f_Id, Name, Surname, st_Id, t_Id) values('"+str(Id)+"', '"+str(Name)+"', '"+str(Surname)+"', '"+str(st_Id)+"', '"+str(t_Id)+"');"
     conn.execute(sql)
     connection.commit()
     conn.close()
@@ -73,7 +73,7 @@ def insertOrUpdate():
             cv2.waitKey(100)
         cv2.imshow("Face", img)
         cv2.waitKey(1)
-        if(SampleNum>120):
+        if(SampleNum>50):
             break
     cam.release()
     cv2.destroyAllWindows()
@@ -201,7 +201,7 @@ cb.config(font=(cbFont), state="readonly")
 cb.option_add("*font", cbFont)
 cb.current()
 
-#combobox_student_id
+#combobox_teacher_id
 cb1 =ttk.Combobox(frm, width=28,values=combo_t_id)
 cb1.place(x=550, y=510)
 cb1.config(font=(cbFont), state="readonly")

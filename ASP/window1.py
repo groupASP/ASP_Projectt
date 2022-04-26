@@ -40,6 +40,12 @@ def subb():
     window1.withdraw()
     os.system("D:\ASP_Project\ASP\\Subject.py")
 
+def attan():
+    window1.withdraw()
+    os.system("D:\ASP_Project\ASP\\attandance.py")
+
+    
+
 window1 = Tk()
 window1.attributes('-fullscreen', True)
 
@@ -156,7 +162,7 @@ b7 = Button(
     image = img7,
     borderwidth = 0,
     highlightthickness = 0,
-    command = btn_clicked,
+    command = attan,
     relief = "flat")
 
 b7.place(
