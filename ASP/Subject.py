@@ -39,7 +39,7 @@ def save_update():
 
     txtId.delete(0, 'end')
     txtName.delete(0, 'end')
-    messagebox.showinfo("ການແກ້ໄຂຂໍ້ມູນ", "ທ່ານໄດ້ແກ້ໄຂຂໍ້ມູນຊັ້ນຮຽນສຳເລັດແລ້ວ!!!")
+    messagebox.showinfo("ການແກ້ໄຂຂໍ້ມູນ", "ທ່ານໄດ້ແກ້ໄຂຂໍ້ມູນວິຊາຮຽນສຳເລັດແລ້ວ!!!")
     btEdit.config(state="normal")
 
 def update():

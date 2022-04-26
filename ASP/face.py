@@ -3,11 +3,11 @@ from tkinter import  messagebox
 import  os
 from tkinter import ttk
 from tkinter.ttk import Treeview
-from colorama import Style
 import pymysql
 import numpy as np
 import cv2
 from PIL import Image
+from tkinter.filedialog import *
 
 # ຄຳສັ່ງເຊື່ອມຕໍ່
 connection = pymysql.connect(host="localhost", user="root", password="", db="asp_base")
@@ -41,15 +41,37 @@ def insert():
     window.withdraw()
     os.system("D:\ASP_Project\ASP\InsertOrUpdateFace.py")
 
+def delete():
+    data = tree.selection()
+    value = tree.item(data)['values'][0]
+
+    sql_delete = "delete from tb_face where F_ID = '"+str(value)+"';"
+    conn.execute(sql_delete)
+    connection.commit()
+
+    for i in tree.get_children():
+        tree.delete(i)
+
+    sql_select = "select * from tb_face;"
+    conn.execute(sql_select)
+
+    i=0
+    for row in conn:
+        tree.insert('', i, text='', values=(row[0], row[1], row[2], row[3]))
+        i += 1
+
 def back():
     l = messagebox.askquestion("BACK","ທ່ານຕ້ອງການຈະກັບໄປໜ້າຫຼັກ ຫຼື ບໍ່?")
     if(l == 'yes'):
         window.withdraw()
         os.system("D:\ASP_Project\ASP\window1.py")
 
+def selectFile():
+   file=askopenfilenames(initialdir="ASP/ImageData",title="Select file",filetypes=(("jpeg files","*.jpg"),("all files","*.*")))
+   f=open(window.file, 'r')
+
 
 window = Tk()
-# window.geometry('1500x900')
 window.attributes('-fullscreen', True)
 window.configure(bg = "#ffffff")
 canvas = Canvas(
@@ -115,7 +137,7 @@ btDelete = Button(
     image=bt4,
     borderwidth=0,
     highlightthickness=0,
-    # command=delete,
+    command=delete,
     relief="flat")
 btDelete.place(
     x=450, y=720, )
@@ -125,13 +147,10 @@ btDelete_img = Button(
     image=bt5,
     borderwidth=0,
     highlightthickness=0,
-    # command=delete,
+    command=selectFile,
     relief="flat")
 btDelete_img.place(
     x=800, y=720, )
-
-Notification = Label(window, text="All things are good", bg="Green", fg="white", width=15,
-                height=3, font=('times', 17, 'bold'))
 
 
 st = ttk.Style()
