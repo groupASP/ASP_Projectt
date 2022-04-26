@@ -24,7 +24,7 @@ def save_update():
 
     sql_update = "update tb_subject set s_name='"+n_name+"' where s_id='"+n_id+"';"
     conn.execute(sql_update)
-    connection
+    connection.commit()
 
     for i in tree.get_children():
         tree.delete(i)
