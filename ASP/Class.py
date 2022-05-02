@@ -47,7 +47,7 @@ def update():
     data = tree.selection()
     value = tree.item(data)['values'][0]
 
-    sql_select = "select * from tb_class where cl_Id='"+value+"';"
+    sql_select = "select * from tb_class where cl_Id='"+str(value)+"';"
     conn.execute(sql_select)
 
     for row in conn:
@@ -65,7 +65,7 @@ def delete():
     data = tree.selection()
     value = tree.item(data)['values'][0]
 
-    sql_delete = "delete from tb_class where cl_Id = '"+value+"';"
+    sql_delete = "delete from tb_class where cl_Id = '"+str(value)+"';"
     conn.execute(sql_delete)
     connection.commit()
 

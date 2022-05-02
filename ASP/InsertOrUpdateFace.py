@@ -88,9 +88,6 @@ Notification = Label(frm, text="All things are good", bg="Green", fg="white", wi
                 height=3, font=('times', 17, 'bold'))
 
 
-
-
-
 #button
 canvas = Canvas(
     frm,
