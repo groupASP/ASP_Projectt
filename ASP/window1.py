@@ -44,6 +44,12 @@ def attan():
     window1.withdraw()
     os.system("D:\ASP_Project\ASP\\attandance.py")
 
+def sche():
+    window1.withdraw()
+    os.system("D:\ASP_Project\ASP\\schedule.py")
+
+
+
     
 
 window1 = Tk()
@@ -201,7 +207,7 @@ b10 = Button(
     image = img10,
     borderwidth = 0,
     highlightthickness = 0,
-    command = btn_clicked,
+    command = sche,
     relief = "flat")
 
 b10.place(

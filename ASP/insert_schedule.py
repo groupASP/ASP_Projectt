@@ -10,7 +10,7 @@ import pymysql
 frm = tkinter.Tk()
 frm.title("Insert Student")
 frm.geometry('1920x1080')
-# frm.attributes('-fullscreen', True)
+frm.attributes('-fullscreen', True)
 
 def insert():
     import pymysql
