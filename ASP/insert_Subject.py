@@ -57,13 +57,13 @@ lb2.place(x=20, y=300)
 lb2.config(font=("Saysettha OT", 18),bg="#ECF8DC")
 
 # Entry
-en = tkinter.Entry(frm,width=18)
+en = tkinter.Entry(frm)
 en.place(x=200, y=150)
-en.config(font=("Saysettha OT",18),width=18)
+en.config(font=("Saysettha OT",18),width=50)
 
 en1 = tkinter.Entry(frm)
 en1.place(x=200, y=300)
-en1.config(font=("Saysettha OT",18),width=25)
+en1.config(font=("Saysettha OT",18),width=50)
 
 
 #Button

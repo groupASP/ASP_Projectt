@@ -33,6 +33,7 @@ def insert():
         conn.execute(sql_insert)
         connection.commit()
         messagebox.showinfo("ການສະແດງຜົນ","ທ່ານໄດ້ເພີ່ມຂໍ້ມູນນັກສຶກສາສຳເລັດແລ້ວ")
+    
     en.delete(0,END)
     en1.delete(0,END)
     en2.delete(0,END)

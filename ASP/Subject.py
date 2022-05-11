@@ -162,8 +162,8 @@ tree = ttk.Treeview(frm)
 tree['columns'] = ('1', '2')
 
 tree.column('#0', width=0)
-tree.column('#1', width=100)
-tree.column('#2', width=800)
+tree.column('#1', width=350)
+tree.column('#2', width=500)
 
 tree.heading('#1', text='ລະຫັດ', anchor='w')
 tree.heading('#2', text='ຊື່ວິຊາ', anchor='w')
@@ -175,7 +175,7 @@ for row in conn:
     tree.insert('', i, text="", values=(row[0], row[1]))
     i = i+1
 
-tree.place(x=150, y=100)
+tree.place(x=30, y=100)
 
 ############################################################################
 
@@ -186,19 +186,19 @@ lb2.place(x=1150, y=100)
 lb2.configure(font=("Saysettha OT", 20), fg="red", bg="#ECF8DC")
 
 lb2 = tk.Label(frm, text="ລະຫັດວິຊາ:")
-lb2.place(x=1100, y=200)
+lb2.place(x=950, y=200)
 lb2.configure(font=("Saysettha OT", 14), bg="#ECF8DC")
 
 lb3 = tk.Label(frm, text="ຊື່ວິຊາ:")
-lb3.place(x=1100, y=270)
+lb3.place(x=950, y=270)
 lb3.configure(font=("Saysettha OT", 14), bg="#ECF8DC")
 
 txtId = tk.Entry(frm)
-txtId.place(x=1230, y=200)
-txtId.config(font=("Saysettha OT", 14))
+txtId.place(x=1050, y=200)
+txtId.config(font=("Saysettha OT", 14),width=35)
 
 txtName = tk.Entry(frm)
-txtName.place(x=1230, y=270)
-txtName.config(font=("Saysettha OT", 14))
+txtName.place(x=1050, y=270)
+txtName.config(font=("Saysettha OT", 14),width=35)
 
 frm.mainloop()

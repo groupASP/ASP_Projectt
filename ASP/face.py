@@ -62,6 +62,7 @@ def delete():
     for row in conn:
         tree.insert('', i, text='', values=(row[0], row[1], row[2], row[3]))
         i += 1
+    messagebox.showinfo("ການລົບຂໍ້ມູນ","ທ່ານໄດ້ລົບຂໍ້ມູນໃບໜ້າສຳເລັດແລ້ວ!!!")
 
 #fucntion for bt_back
 def back():

@@ -108,6 +108,7 @@ def edit():
 
 
 def delete():
+   
     pm = tree.selection()
     mon = tree.item(pm)['values'][0]
     # print(mon)
