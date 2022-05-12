@@ -30,6 +30,9 @@ def back():
 
 
 def save():
+    connection = pymysql.connect(host="localhost", user="root", password="", db="asp_base")
+    conn = connection.cursor()
+
     tx11.config(state="normal")
     st_Id = tx11.get()
     st_Name = tx22.get()
@@ -104,6 +107,9 @@ def save():
 
 
 def edit():
+    connection = pymysql.connect(host="localhost", user="root", password="", db="asp_base")
+    conn = connection.cursor()
+
     data = tree.selection()
     value = tree.item(data)["values"][0]
 
@@ -115,11 +121,12 @@ def edit():
         st_Name = row[1]
         st_Surname = row[2]
         st_Gender = row[3]
-        st_DOB = row[4]
-        st_Tel = row[5]
-        st_Village = row[6]
-        st_District = row[7]
-        st_Province = row[8]
+        cl_Id = row[4]
+        st_DOB = row[5]
+        st_Tel = row[6]
+        st_Village = row[7]
+        st_District = row[8]
+        st_Province = row[9]
 
         tx11.insert(0, st_Id)
         tx22.insert(0, st_Name)
@@ -129,6 +136,7 @@ def edit():
         tx66.insert(0, st_Village)
         tx77.insert(0, st_District)
         tx88.insert(0, st_Province)
+        cb_class.set(cl_Id)
 
         #####ເພດ
         cbList = ["ຊາຍ", "ຍິງ"]
@@ -144,6 +152,8 @@ def edit():
 
 
 def delete():
+    connection = pymysql.connect(host="localhost", user="root", password="", db="asp_base")
+    conn = connection.cursor()
 
     pm = tree.selection()
     mon = tree.item(pm)["values"][0]
@@ -352,6 +362,10 @@ lb99 = tkinter.Label(b, text="ແຂວງ:")
 lb99.place(x=800, y=520)
 lb99.config(font=("Saysettha OT", 18), bg="#ECF8DC")
 
+lb10= tkinter.Label(b, text=" ຊັ້ນຮຽນ:")
+lb10.place(x=1150, y=520)
+lb10.config(font=("Saysettha OT", 18), bg="#ECF8DC")
+
 ###entryyyyy
 
 tx11 = tkinter.Entry(b)
@@ -399,17 +413,18 @@ combo.option_add("*font", cbfont)
 #connect database
 conn = pymysql.connect(user="root", password="", host="Localhost",database="asp_base")
 curs = conn.cursor()
-#combo_student_id form database
+#combo_class_id form database
 curs.execute('select cl_Id from tb_class;')
 results = curs.fetchall()
 combo_cl_id = [result[0] for result in results]
 
-#combobox_student_id
-cb =ttk.Combobox(b, width=16,values=combo_cl_id)
-cb.place(x=1300, y=520)
-cb.config(font=(cbfont), state="readonly")
-cb.option_add("*font", cbfont)
-cb.current()
+#combobox_class_id
+cb_class =ttk.Combobox(b, width=16,values=combo_cl_id)
+cb_class.place(x=1300, y=520)
+cb_class.config(font=(cbfont), state="readonly")
+cb_class.configure(font=("Saysettha OT", 20), state="readonly")
+cb_class.option_add("*font", cbfont)
+cb_class.current()
 
 
 # button

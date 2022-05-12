@@ -32,7 +32,7 @@ def save():
     conn = connection.cursor()
     en_scid.config(state="normal")
     sc_Id = en_scid.get()
-    d_Id = cb_cl.get()
+    d_Id = cb_day.get()
     sc_Period = cb_period.get()
     sc_Year = en_year.get()
     r_Id = cb_room.get()
@@ -41,23 +41,7 @@ def save():
     t_Id = cb_teacher.get()
 
     sql_update = (
-        "update tb_schedule set d_Id='"
-        + d_Id
-        + "', sc_Period='"
-        + sc_Period
-        + "', sc_Year='"
-        + sc_Year
-        + "', r_Id='"
-        + r_Id
-        + "', s_Id='"
-        + cl_Id
-        + "', st_Id='"
-        + s_Id
-        + "', t_Id='"
-        + t_Id
-        + "' where sc_Id='"
-        + str(sc_Id)
-        + "';"
+        "update tb_schedule set d_Id='"+ d_Id+ "', sc_Period='"+ sc_Period+ "', sc_Year='"+ sc_Year+ "', r_Id='"+ r_Id+ "', cl_Id='"+ cl_Id+ "', s_Id='"+ s_Id+ "', t_Id='"+ t_Id+ "' where sc_Id='"+ str(sc_Id)+ "';"
     )
     conn.execute(sql_update)
     connection.commit()
@@ -92,8 +76,7 @@ def save():
 def edit():
 
     connection = pymysql.connect(
-        host="localhost", user="root", password="", db="asp_base"
-    )
+        host="localhost", user="root", password="", db="asp_base" )
     conn = connection.cursor()
     data = tree.selection()
     value = tree.item(data)["values"][0]
@@ -107,17 +90,20 @@ def edit():
         sc_Period = row[2]
         sc_Year = row[3]
         r_Id = row[4]
-        s_Id = row[5]
-        cl_Id = row[6]
+        cl_Id = row[5]
+        s_Id = row[6]
         t_Id = row[7]
 
         en_scid.insert(0, sc_Id)
-        cb_day.current(int(d_Id))
         en_year.insert(0, sc_Year)
-        cb_room.current(int(r_Id))
-        cb_cl.current(int(cl_Id))
-        cb_subject.current(int(s_Id))
-        cb_teacher.current(int(t_Id))
+        cb_day.set(d_Id)
+        cb_room.set(r_Id)
+        cb_cl.set(cl_Id)
+        cb_subject.set(s_Id)
+        cb_teacher.set(t_Id)
+
+        
+
 
         cb_list_period = ["ພາກເຊົ້າ", "ພາກບ່າຍ", "ພາກຄ່ຳ"]
         if(sc_Period == cb_list_period[0]):
@@ -346,7 +332,7 @@ cb_day = ttk.Combobox(b, width=15, value=combo_d_id)
 cb_day.place(x=330, y=200)
 cb_day.config(font=("Saysettha OT", 18), state="readonly")
 cb_day.option_add("*font", cbFont)
-cb_day.current(0)
+cb_day.current()
 
 # combo_room_id form database
 curs.execute("select r_Id from tb_room;")
@@ -359,7 +345,7 @@ cb_room.place(x=150, y=500)
 cb_room.config(font=(cbFont), state="readonly")
 cb_room.config(font=("Saysettha OT", 18), state="readonly")
 cb_room.option_add("*font", cbFont)
-cb_room.current(0)
+cb_room.current()
 
 # combo_subject_id form database
 curs.execute("select s_Id from tb_subject;")
@@ -372,7 +358,7 @@ cb_subject.place(x=910, y=500)
 cb_subject.config(font=(cbFont), state="readonly")
 cb_subject.config(font=("Saysettha OT", 18), state="readonly")
 cb_subject.option_add("*font", cbFont)
-cb_subject.current(0)
+cb_subject.current()
 
 # combo_class_id form database
 curs.execute("select cl_Id from tb_class;")
@@ -385,7 +371,7 @@ cb_cl.place(x=520, y=500)
 cb_cl.config(font=(cbFont), state="readonly")
 cb_cl.config(font=("Saysettha OT", 18), state="readonly")
 cb_cl.option_add("*font", cbFont)
-cb_cl.current(0)
+cb_cl.current()
 
 # combo_teacher_id form database
 curs.execute("select t_Id from tb_teacher;")
@@ -398,7 +384,7 @@ cb_teacher.place(x=1330, y=500)
 cb_teacher.config(font=(cbFont), state="readonly")
 cb_teacher.config(font=("Saysettha OT", 18), state="readonly")
 cb_teacher.option_add("*font", cbFont)
-cb_teacher.current(0)
+cb_teacher.current()
 
 # button
 bts = tkinter.Button(b, text="Update", command=save, width=20)
