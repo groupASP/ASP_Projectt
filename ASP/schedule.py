@@ -112,15 +112,23 @@ def edit():
         t_Id = row[7]
 
         en_scid.insert(0, sc_Id)
-        cb_day.insert(0, d_Id)
-        cb_period.insert(0, sc_Period)
+        cb_day.current(int(d_Id))
         en_year.insert(0, sc_Year)
-        cb_room.insert(0, r_Id)
-        cb_cl.insert(0, cl_Id)
-        cb_subject.insert(0, s_Id)
-        cb_teacher.insert(0, t_Id)
+        cb_room.current(int(r_Id))
+        cb_cl.current(int(cl_Id))
+        cb_subject.current(int(s_Id))
+        cb_teacher.current(int(t_Id))
+
+        cb_list_period = ["ພາກເຊົ້າ", "ພາກບ່າຍ", "ພາກຄ່ຳ"]
+        if(sc_Period == cb_list_period[0]):
+            cb_period.current(0)
+        elif(sc_Period == cb_list_period[1]):
+            cb_period.current(1)
+        elif(sc_Period == cb_list_period[2]):
+            cb_period.current(2)
         a.withdraw()
         b.deiconify()
+        en_scid.config(state="disabled")
 
 
 def delete():
@@ -338,7 +346,7 @@ cb_day = ttk.Combobox(b, width=15, value=combo_d_id)
 cb_day.place(x=330, y=200)
 cb_day.config(font=("Saysettha OT", 18), state="readonly")
 cb_day.option_add("*font", cbFont)
-cb_day.current()
+cb_day.current(0)
 
 # combo_room_id form database
 curs.execute("select r_Id from tb_room;")
@@ -351,7 +359,7 @@ cb_room.place(x=150, y=500)
 cb_room.config(font=(cbFont), state="readonly")
 cb_room.config(font=("Saysettha OT", 18), state="readonly")
 cb_room.option_add("*font", cbFont)
-cb_room.current()
+cb_room.current(0)
 
 # combo_subject_id form database
 curs.execute("select s_Id from tb_subject;")
@@ -364,7 +372,7 @@ cb_subject.place(x=910, y=500)
 cb_subject.config(font=(cbFont), state="readonly")
 cb_subject.config(font=("Saysettha OT", 18), state="readonly")
 cb_subject.option_add("*font", cbFont)
-cb_subject.current()
+cb_subject.current(0)
 
 # combo_class_id form database
 curs.execute("select cl_Id from tb_class;")
@@ -377,7 +385,7 @@ cb_cl.place(x=520, y=500)
 cb_cl.config(font=(cbFont), state="readonly")
 cb_cl.config(font=("Saysettha OT", 18), state="readonly")
 cb_cl.option_add("*font", cbFont)
-cb_cl.current()
+cb_cl.current(0)
 
 # combo_teacher_id form database
 curs.execute("select t_Id from tb_teacher;")
@@ -390,7 +398,7 @@ cb_teacher.place(x=1330, y=500)
 cb_teacher.config(font=(cbFont), state="readonly")
 cb_teacher.config(font=("Saysettha OT", 18), state="readonly")
 cb_teacher.option_add("*font", cbFont)
-cb_teacher.current()
+cb_teacher.current(0)
 
 # button
 bts = tkinter.Button(b, text="Update", command=save, width=20)
