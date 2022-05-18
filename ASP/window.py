@@ -18,33 +18,37 @@ def login():
     user = "admin"
     pw = "1234"
 
+    teacher = "teacher"
+    t_pw = "1234"
+
     txtu = entry0.get()
     txtp = entry1.get()
 
-    if(txtu == "") or (txtp == ""):
+    if (txtu == "") or (txtp == ""):
         messagebox.showerror("LOGIN!!!", "Please input User and Password")
 
-    elif(txtu == user) and (txtp == pw):
+    elif (txtu == user) and (txtp == pw):
         window.withdraw()
         os.system("D:\ASP_Project\ASP\window1.py")
 
+    elif (txtu == teacher) and (txtp == t_pw):
+        window.withdraw()
+        os.system("D:\ASP_Project\ASP\\report_for_teacher.py")
 
-    elif(txtu != user) and (txtp != pw):
+    elif (txtu != user and teacher) and (txtp != pw and t_pw):
         messagebox.showerror("LOGIN!!!", "Your User and Password incorrect!!!")
-        entry0.delete(0, 'end')
-        entry1.delete(0, 'end')
+        entry0.delete(0, "end")
+        entry1.delete(0, "end")
         entry0.focus()
 
-
-    elif(txtu != user):
+    elif txtu != user and teacher:
         messagebox.showerror("LOGIN!!!", "Your User incorrect!!!")
-        entry0.delete(0, 'end')
+        entry0.delete(0, "end")
         entry0.focus()
 
-
-    elif(txtp != pw):
+    elif txtp != pw and t_pw:
         messagebox.showerror("LOGIN!!!", "Your Password incorrect!!!")
-        entry1.delete(0, 'end')
+        entry1.delete(0, "end")
         entry1.focus()
 canvas = Canvas(
     window,
