@@ -48,6 +48,10 @@ def sche():
     window1.withdraw()
     os.system("D:\ASP_Project\ASP\\schedule.py")
 
+def report():
+    window1.withdraw()
+    os.system("D:\ASP_Project\ASP\\report.py")
+
 
 
     
@@ -103,7 +107,7 @@ b2 = Button(
     image = img2,
     borderwidth = 0,
     highlightthickness = 0,
-    command = btn_clicked,
+    command = report,
     relief = "flat")
 
 b2.place(
