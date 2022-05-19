@@ -163,8 +163,8 @@ tree = ttk.Treeview(frm)
 tree['columns'] = ('1', '2')
 
 tree.column('#0', width=0)
-tree.column('#1', width=100)
-tree.column('#2', width=800)
+tree.column('#1', width=300)
+tree.column('#2', width=600)
 
 tree.heading('#1', text='ລະຫັດ', anchor='w')
 tree.heading('#2', text='ຊື່', anchor='w')
