@@ -50,6 +50,14 @@ button_bk = Button(
 )
 button_bk.place(x=400, y=600)
 
+#label
+lb1 = tkinter.Label(a, text="ວັນທີ່ເລີ່ມຮຽນ")
+lb1.place(x=430, y=220)
+lb1.configure(font=("Saysettha OT", 25), bg="#ECF8DC", fg="black")
+
+lb2 = tkinter.Label(a, text="ວັນທີສິ້ນສຸດການຮຽນ")
+lb2.place(x=900, y=220)
+lb2.configure(font=("Saysettha OT", 25), bg="#ECF8DC", fg="black")
 
 
 #connect database

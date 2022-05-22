@@ -30,7 +30,9 @@ def back():
 
 
 def save():
-    connection = pymysql.connect(host="localhost", user="root", password="", db="asp_base")
+    connection = pymysql.connect(
+        host="localhost", user="root", password="", db="asp_base"
+    )
     conn = connection.cursor()
 
     tx11.config(state="normal")
@@ -90,6 +92,7 @@ def save():
                 row[6],
                 row[7],
                 row[8],
+                row[9],
             ),
         )
         i = i + 1
@@ -107,7 +110,9 @@ def save():
 
 
 def edit():
-    connection = pymysql.connect(host="localhost", user="root", password="", db="asp_base")
+    connection = pymysql.connect(
+        host="localhost", user="root", password="", db="asp_base"
+    )
     conn = connection.cursor()
 
     data = tree.selection()
@@ -152,7 +157,9 @@ def edit():
 
 
 def delete():
-    connection = pymysql.connect(host="localhost", user="root", password="", db="asp_base")
+    connection = pymysql.connect(
+        host="localhost", user="root", password="", db="asp_base"
+    )
     conn = connection.cursor()
 
     pm = tree.selection()
@@ -247,17 +254,17 @@ st.configure("Treeview", rowheight=55, font=("Saysettha OT", 12))
 
 tree = ttk.Treeview(a)
 tree["columns"] = ("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
-tree.column("#0", width=5)
-tree.column("#1", width=200)
-tree.column("#2", width=180)
-tree.column("#3", width=180)
-tree.column("#4", width=80)
-tree.column("#5", width=100)
-tree.column("#6", width=180)
-tree.column("#7", width=150)
-tree.column("#8", width=150)
-tree.column("#9", width=150)
-tree.column("#10", width=170)
+tree.column("#0", width=5, anchor="center")
+tree.column("#1", width=200, anchor="center")
+tree.column("#2", width=180, anchor="center")
+tree.column("#3", width=180, anchor="center")
+tree.column("#4", width=80, anchor="center")
+tree.column("#5", width=100, anchor="center")
+tree.column("#6", width=180, anchor="center")
+tree.column("#7", width=150, anchor="center")
+tree.column("#8", width=150, anchor="center")
+tree.column("#9", width=150, anchor="center")
+tree.column("#10", width=170, anchor="center")
 
 tree.heading("#1", text="ລະຫັດ")
 tree.heading("#2", text="ຊື່")
@@ -362,7 +369,7 @@ lb99 = tkinter.Label(b, text="ແຂວງ:")
 lb99.place(x=800, y=520)
 lb99.config(font=("Saysettha OT", 18), bg="#ECF8DC")
 
-lb10= tkinter.Label(b, text=" ຊັ້ນຮຽນ:")
+lb10 = tkinter.Label(b, text=" ຊັ້ນຮຽນ:")
 lb10.place(x=1150, y=520)
 lb10.config(font=("Saysettha OT", 18), bg="#ECF8DC")
 
@@ -410,16 +417,16 @@ combo.configure(font=("Saysettha OT", 20), state="readonly")
 combo.current(0)
 combo.option_add("*font", cbfont)
 
-#connect database
-conn = pymysql.connect(user="root", password="", host="Localhost",database="asp_base")
+# connect database
+conn = pymysql.connect(user="root", password="", host="Localhost", database="asp_base")
 curs = conn.cursor()
-#combo_class_id form database
-curs.execute('select cl_Id from tb_class;')
+# combo_class_id form database
+curs.execute("select cl_Id from tb_class;")
 results = curs.fetchall()
 combo_cl_id = [result[0] for result in results]
 
-#combobox_class_id
-cb_class =ttk.Combobox(b, width=16,values=combo_cl_id)
+# combobox_class_id
+cb_class = ttk.Combobox(b, width=16, values=combo_cl_id)
 cb_class.place(x=1300, y=520)
 cb_class.config(font=(cbfont), state="readonly")
 cb_class.configure(font=("Saysettha OT", 20), state="readonly")

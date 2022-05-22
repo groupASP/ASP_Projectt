@@ -161,12 +161,12 @@ st.configure('Treeview', rowheight=50, font=("Saysettha OT", 14))
 tree = ttk.Treeview(frm)
 tree['columns'] = ('1', '2')
 
-tree.column('#0', width=0)
-tree.column('#1', width=350)
-tree.column('#2', width=500)
+tree.column('#0', width=0, anchor='center')
+tree.column('#1', width=350, anchor='center')
+tree.column('#2', width=500, anchor='center')
 
-tree.heading('#1', text='ລະຫັດ', anchor='w')
-tree.heading('#2', text='ຊື່ວິຊາ', anchor='w')
+tree.heading('#1', text='ລະຫັດ', anchor='center')
+tree.heading('#2', text='ຊື່ວິຊາ', anchor='center')
 
 
 

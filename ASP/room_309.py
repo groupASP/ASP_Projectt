@@ -10,6 +10,7 @@ a = tkinter.Tk()
 a.geometry("1500x900")
 a.attributes("-fullscreen", True)
 
+
 def check_in():
     import cv2
     import pymysql
@@ -31,7 +32,8 @@ def check_in():
                 conn = connection.cursor()
                 sql = (
                     "select st.st_Id, st.st_Name, st.st_Surname, d.d_Name, s.s_Name, \
-                    r.r_Name, cl.cl_Name, sc.sc_Period, sc.sc_Year, f.Name, f.Surname\
+                    r.r_Name, cl.cl_Name, sc.sc_Period, sc.sc_Year, f.Name, f.Surname, sc.start_Class, \
+                    sc.end_Class \
                     from tb_face f inner join tb_student st on f.st_Id = st.st_Id\
                     inner join tb_class cl on st.cl_Id = cl.cl_Id\
                     inner join tb_schedule sc on sc.cl_Id=cl.cl_Id\
@@ -96,26 +98,49 @@ def check_in():
                     host="localhost", user="root", password="", database="asp_base"
                 )
                 conn = connection.cursor()
-                if str(profile[5]) == "309" and str(profile[6] == "CS6B"):
-                    time = datetime.now().strftime("%H:%M:%S")
+                if str(profile[5]) == "309" and str(profile[6]) == "CS6B":
+                    timee = datetime.now().strftime("%H:%M:%S")
+                    a = 0
+                    b = 1
                     date_Today = datetime.now().strftime("%Y-%m-%d")
-
-                    insert_data = "INSERT INTO tb_attandance(a_Id, st_Id, Name, Surname, d_Name, s_Name, r_Name, cl_Name, sc_Period, sc_Year, time_In, date) VALUES (0, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
-                    VALUES = (
-                        str(profile[0]),
-                        str(profile[1]),
-                        str(profile[2]),
-                        str(profile[3]),
-                        str(profile[4]),
-                        str(profile[5]),
-                        str(profile[6]),
-                        str(profile[7]),
-                        str(profile[8]),
-                        time,
-                        date_Today,
-                    )
-                    conn.execute(insert_data, VALUES)
-                    connection.commit()
+                    time = datetime.now().strftime("%H:%M:%S")
+                    start_Class = str(timedelta(8, 45, 00))
+                    if time >= start_Class:
+                        insert_data = "INSERT INTO tb_attandance(a_Id, st_Id, Name, Surname, d_Name, s_Name, r_Name, cl_Name, sc_Period, sc_Year, time_In, first_Absence, date) VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+                        VALUES = (
+                            str(profile[0]),
+                            str(profile[1]),
+                            str(profile[2]),
+                            str(profile[3]),
+                            str(profile[4]),
+                            str(profile[5]),
+                            str(profile[6]),
+                            str(profile[7]),
+                            str(profile[8]),
+                            timee,
+                            b,
+                            date_Today,
+                        )
+                        conn.execute(insert_data, VALUES)
+                        connection.commit()
+                    else:
+                        insert_data = "INSERT INTO tb_attandance(a_Id, st_Id, Name, Surname, d_Name, s_Name, r_Name, cl_Name, sc_Period, sc_Year, time_In, first_Absence, date) VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+                        VALUES = (
+                            str(profile[0]),
+                            str(profile[1]),
+                            str(profile[2]),
+                            str(profile[3]),
+                            str(profile[4]),
+                            str(profile[5]),
+                            str(profile[6]),
+                            str(profile[7]),
+                            str(profile[8]),
+                            timee,
+                            a,
+                            date_Today,
+                        )
+                        conn.execute(insert_data, VALUES)
+                        connection.commit()
             except Exception as e:
                 print(e)
 
@@ -125,6 +150,7 @@ def check_in():
         auto()
     except Exception as e:
         print(e)
+
 
 def Exit_Room():
     import cv2
@@ -147,7 +173,8 @@ def Exit_Room():
                 conn = connection.cursor()
                 sql = (
                     "select st.st_Id, st.st_Name, st.st_Surname, d.d_Name, s.s_Name, \
-                    r.r_Name, cl.cl_Name, sc.sc_Period, sc.sc_Year, f.Name, f.Surname\
+                    r.r_Name, cl.cl_Name, sc.sc_Period, sc.sc_Year, f.Name, f.Surname, sc.start_Class, \
+                    sc.end_Class\
                     from tb_face f inner join tb_student st on f.st_Id = st.st_Id\
                     inner join tb_class cl on st.cl_Id = cl.cl_Id\
                     inner join tb_schedule sc on sc.cl_Id=cl.cl_Id\
@@ -213,14 +240,51 @@ def Exit_Room():
                 )
                 conn = connection.cursor()
                 time = datetime.now().strftime("%H:%M:%S")
+                timee = datetime.now().strftime("%H:%M:%S")
                 date_Today = datetime.now().strftime("%Y-%m-%d")
+                a = 0
+                b = 1
+                start_Class = str(timedelta(11, 30, 00))
+                end_Class = str(timedelta(12, 00, 00))
                 st_Id = str(profile[0])
                 r_Name = str(profile[5])
                 cl_Name = str(profile[6])
-
-                update_data = " UPDATE tb_attandance set time_Out = '"+time+"' where st_Id = '"+str(st_Id)+"' and r_Name = '"+str(r_Name)+"' and cl_Name = '"+str(cl_Name)+"' and date = '"+date_Today+"';"
-                conn.execute(update_data)
-                connection.commit()
+                if timee >= start_Class and timee <= end_Class:
+                    update_data = (
+                        " UPDATE tb_attandance set time_Out = '"
+                        + time
+                        + "', second_Absence = '"
+                        + str(a)
+                        + "' where st_Id = '"
+                        + str(st_Id)
+                        + "' and r_Name = '"
+                        + str(r_Name)
+                        + "' and cl_Name = '"
+                        + str(cl_Name)
+                        + "' and date = '"
+                        + date_Today
+                        + "';"
+                    )
+                    conn.execute(update_data)
+                    connection.commit()
+                else:
+                    update_data = (
+                        " UPDATE tb_attandance set time_Out = '"
+                        + time
+                        + "', second_Absence = '"
+                        + str(b)
+                        + "' where st_Id = '"
+                        + str(st_Id)
+                        + "' and r_Name = '"
+                        + str(r_Name)
+                        + "' and cl_Name = '"
+                        + str(cl_Name)
+                        + "' and date = '"
+                        + date_Today
+                        + "';"
+                    )
+                    conn.execute(update_data)
+                    connection.commit()
             except Exception as e:
                 print(e)
 
@@ -230,6 +294,7 @@ def Exit_Room():
         auto()
     except Exception as e:
         print(e)
+
 
 def back():
     l = messagebox.askquestion("BACK", "ທ່ານຕ້ອງການຈະກັບໄປໜ້າການມາຮຽນ ຫຼື ບໍ່?")
