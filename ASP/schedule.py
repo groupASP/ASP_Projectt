@@ -118,6 +118,10 @@ def edit():
 
 
 def delete():
+    connection = pymysql.connect(
+        host="localhost", user="root", password="", db="asp_base" )
+    conn = connection.cursor()
+
     pm = tree.selection()
     mon = tree.item(pm)["values"][0]
     sql_delete = "delete from tb_schedule where sc_Id='" + str(mon) + "';"

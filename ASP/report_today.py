@@ -10,17 +10,12 @@ a = tkinter.Tk()
 a.geometry("1500x900")
 a.attributes("-fullscreen", True)
 
-def report_today():
-    a.withdraw()
-    os.system("D:\ASP_Project\ASP\\report_today.py")
-
-
 
 def back():
     l = messagebox.askquestion("BACK", "ທ່ານຕ້ອງການຈະກັບໄປໜ້າລາຍງານຫຼັກ ຫຼື ບໍ່?")
     if l == "yes":
         a.withdraw()
-        os.system("D:\ASP_Project\ASP\\window1.py")
+        os.system("D:\ASP_Project\ASP\\report.py")
 
 
 # button
@@ -33,45 +28,15 @@ canvas.place(x=0, y=0)
 background_img = PhotoImage(file="ASP/Image/bg_report.png")
 background = canvas.create_image(950.0, 540.0, image=background_img)
 
-bt1 = PhotoImage(file="ASP/Image/report1.png")
+bt1 = PhotoImage(file="ASP/Image/bg_report_today.png")
 button_1 = Button(
     image=bt1,
     borderwidth=0,
     highlightthickness=0,
-    command=report_today,
+    # command=check_in,
     relief="flat",
 )
-button_1.place(x=200, y=100)
 
-bt2 = PhotoImage(file="ASP/Image/report2.png")
-button_2 = Button(
-    image=bt2,
-    borderwidth=0,
-    highlightthickness=0,
-    # command=Exit_Room,
-    relief="flat",
-)
-button_2.place(x=950, y=100)
-
-bt3 = PhotoImage(file="ASP/Image/report3.png")
-button_3 = Button(
-    image=bt3,
-    borderwidth=0,
-    highlightthickness=0,
-    # command=auto_att,
-    relief="flat",
-)
-button_3.place(x=200, y=400)
-
-bt4 = PhotoImage(file="ASP/Image/report4.png")
-button_4 = Button(
-    image=bt4,
-    borderwidth=0,
-    highlightthickness=0,
-    # command=auto_att,
-    relief="flat",
-)
-button_4.place(x=950, y=400)
 
 bt5 = PhotoImage(file="ASP/Image/back.png")
 button_5= Button(
