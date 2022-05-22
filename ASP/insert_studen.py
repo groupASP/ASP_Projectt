@@ -165,12 +165,12 @@ cbGender.option_add("*font", cbFont)
 conn = pymysql.connect(user="root", password="", host="Localhost",database="asp_base")
 curs = conn.cursor()
 
-#combo_student_id form database
+#combo
 curs.execute('select cl_Id from tb_class;')
 results = curs.fetchall()
 combo_cl_id = [result[0] for result in results]
 
-#combobox_student_id
+#combobox
 cb =ttk.Combobox(frm, width=16,values=combo_cl_id)
 cb.place(x=1300, y=520)
 cb.config(font=(cbFont), state="readonly")

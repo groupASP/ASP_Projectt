@@ -14,6 +14,14 @@ def report_today():
     a.withdraw()
     os.system("D:\ASP_Project\ASP\\report_today.py")
 
+def report_midterm():
+    a.withdraw()
+    os.system("D:\ASP_Project\ASP\\report_midterm.py")
+
+def report_final():
+    a.withdraw()
+    os.system("D:\ASP_Project\ASP\\report_final.py")
+
 
 
 def back():
@@ -48,7 +56,7 @@ button_2 = Button(
     image=bt2,
     borderwidth=0,
     highlightthickness=0,
-    # command=Exit_Room,
+    command=report_midterm,
     relief="flat",
 )
 button_2.place(x=950, y=100)
@@ -58,7 +66,7 @@ button_3 = Button(
     image=bt3,
     borderwidth=0,
     highlightthickness=0,
-    # command=auto_att,
+    command=report_final,
     relief="flat",
 )
 button_3.place(x=200, y=400)
