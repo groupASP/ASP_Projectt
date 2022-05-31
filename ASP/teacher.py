@@ -217,7 +217,7 @@ tree.column("#5", width=150, anchor="center")
 tree.column("#6", width=150, anchor="center")
 tree.column("#7", width=180, anchor="center")
 tree.column("#8", width=150, anchor="center")
-tree.column("#9", width=180, anchor="center")
+tree.column("#9", width=200, anchor="center")
 tree.column("#10", width=180, anchor="center")
 
 tree.heading("#1", text="ລະຫັດ")
@@ -229,7 +229,7 @@ tree.heading("#6", text="ເມືອງ")
 tree.heading("#7", text="ແຂວງ")
 tree.heading("#8", text="ເບີໂທ")
 tree.heading("#9", text="ອີເມວ")
-tree.heading("#10", text="ລະດັບການສຶກສາ")
+tree.heading("#10", text="ວຸດທິ")
 
 # ຄຳສັ່ງສະແດງຜົນ
 

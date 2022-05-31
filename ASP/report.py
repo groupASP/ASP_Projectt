@@ -22,6 +22,11 @@ def report_final():
     a.withdraw()
     os.system("D:\ASP_Project\ASP\\report_final.py")
 
+def report_no_qualified():
+    a.withdraw()
+    os.system("D:\ASP_Project\ASP\\report_no_qualified.py")
+
+
 
 
 def back():
@@ -76,7 +81,7 @@ button_4 = Button(
     image=bt4,
     borderwidth=0,
     highlightthickness=0,
-    # command=auto_att,
+    command=report_no_qualified,
     relief="flat",
 )
 button_4.place(x=950, y=400)

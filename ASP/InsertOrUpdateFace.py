@@ -149,11 +149,11 @@ button_3.place(
 )
 
 #label
-lb1 = Label(frm, text="ຊື່ນັກສຶກສາ:")
+lb1 = Label(frm, text="ຊື່:")
 lb1.place(x=250, y=200)
 lb1.config(font=("Saysettha OT", 20),bg="#ECF8DC")
 
-lb2 = Label(frm, text="ນາມສະກຸນນັກສຶກສາ:")
+lb2 = Label(frm, text="ນາມສະກຸນ:")
 lb2.place(x=250, y=300)
 lb2.config(font=("Saysettha OT", 20),bg="#ECF8DC")
 

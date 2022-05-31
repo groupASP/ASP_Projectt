@@ -21,15 +21,18 @@ def report_teacher_today():
     st = ttk.Style(b)
     st.theme_use("clam")
     st.configure("Treeview.Heading", fg="blue", font=("Saysettha OT", 14))
-    st.configure("Treeview", rowheight=60, font=("Saysettha OT", 14))
+    st.configure("Treeview", rowheight=60, font=("Saysettha OT", 12))
     cl_Name = cb_class.get()
-    today = str(date(2022, 5, 2))
+    s_Name = cb_subject.get()
+    today = str(date(2022, 5, 30))
     sql = (
         "select st_Id, Name, Surname, cl_Name, time_In, time_Out, first_Absence, second_Absence, date from tb_attandance where cl_Name = '"
         + cl_Name
+        + "' and s_Name='"
+        + s_Name
         + "' and date = '"
         + today
-        + "' ;"
+        + "';"
     )
     conn.execute(sql)
 
@@ -47,15 +50,15 @@ def report_teacher_today():
     )
 
     tree.column("#0", width=5)
-    tree.column("#1", width=180, anchor="center")
-    tree.column("#2", width=150, anchor="center")
-    tree.column("#3", width=150, anchor="center")
+    tree.column("#1", width=150, anchor="center")
+    tree.column("#2", width=180, anchor="center")
+    tree.column("#3", width=180, anchor="center")
     tree.column("#4", width=150, anchor="center")
-    tree.column("#5", width=150, anchor="center")
-    tree.column("#6", width=150, anchor="center")
+    tree.column("#5", width=180, anchor="center")
+    tree.column("#6", width=180, anchor="center")
     tree.column("#7", width=150, anchor="center")
     tree.column("#8", width=150, anchor="center")
-    tree.column("#9", width=150, anchor="center")
+    tree.column("#9", width=200, anchor="center")
 
     tree.heading("#1", text="ລະຫັດນັກສຶກສາ")
     tree.heading("#2", text="ຊື່")
@@ -88,7 +91,7 @@ def report_teacher_today():
             ),
         )
         i = i + 1
-    tree.place(x=-30, y=80)
+    tree.place(x=-15, y=80)
 
 
 def back():
@@ -109,8 +112,11 @@ canvas = Canvas(
 
 canvas.place(x=0, y=0)
 
-background_img = PhotoImage(file="ASP/Image/bg_report.png")
+background_img = PhotoImage(file="ASP/Image/bg_report_today.png")
 background = canvas.create_image(950.0, 540.0, image=background_img)
+
+################################################################################
+################################################################################
 
 
 b = Tk()
@@ -119,12 +125,10 @@ b.config(bg="#ECF8DC")
 b.attributes("-fullscreen", True)
 b.withdraw()
 
-lbShow = tkinter.Label(b, text="ລາຍງານຂໍ້ມູນນັກສຶກສາປະຈຳວັນ")
+lbShow = tkinter.Label(b, text="ລາຍງານຂໍ້ມູນການຂາດນັກສຶກສາປະຈຳວັນ")
 lbShow.pack(side="top", fill="x")
 lbShow.configure(font=("Saysettha OT", 30), bg="#04C582", fg="white")
 
-
-cb_Class = ["HCS6B", "HCS6C", "HCS6E"]
 
 cbFont = tkFont.Font(family="Saysettha OT", size=16)
 
@@ -134,37 +138,53 @@ cb_Style.configure("TCombobox", fieldbackground="orange", background="white")
 
 label = Label(
     a,
-    text="ກະລຸນາເລືອກຫ້ອງຂອງທ່ານ",
+    text="ກະລຸນາເລືອກຫ້ອງຂອງທ່ານ : ",
     font=("Phetsarath OT", 20, "bold"),
-    bg="#FFFFFF",
+    bg="#ECF8DC",
     fg="black",
 )
-label.place(x=570, y=200)
+label.place(x=300, y=200)
 
+conn.execute("select cl_Name from tb_class;")
+results = conn.fetchall()
+combo_cl_name = [result[0] for result in results]
 
-cb_class = ttk.Combobox(a, width=20, height=20, values=cb_Class)
-cb_class.place(x=600, y=300)
+cb_class = ttk.Combobox(a, width=25, values=combo_cl_name)
+cb_class.place(x=700, y=200)
 cb_class.config(font=(cbFont), state="readonly")
+cb_class.configure(font=("Saysettha OT", 20), state="readonly")
 cb_class.option_add("*font", cbFont)
 cb_class.current(0)
+
+label = Label(
+    a,
+    text="ກະລຸນາເລືອກວິຊາຂອງທ່ານ : ",
+    font=("Phetsarath OT", 20, "bold"),
+    bg="#ECF8DC",
+    fg="black",
+)
+label.place(x=300, y=450)
+
+conn.execute("select s_Name from tb_subject;")
+results = conn.fetchall()
+combo_s_name = [result[0] for result in results]
+
+cb_subject = ttk.Combobox(a, width=25, values=combo_s_name)
+cb_subject.place(x=700, y=450)
+cb_subject.config(font=(cbFont), state="readonly")
+cb_subject.configure(font=("Saysettha OT", 20), state="readonly")
+cb_subject.option_add("*font", cbFont)
+cb_subject.current(0)
 
 bts = tkinter.Button(b, text="Back", command=back, width=20)
 bts.place(x=550, y=750)
 bts.configure(font=("Saysettha OT", 18), bg="green", fg="white")
 
-# bt1 = PhotoImage(file="ASP/Image/bg_report_today.png")
-# button_1 = Button(
-#     image=bt1,
-#     borderwidth=0,
-#     highlightthickness=0,
-#     # command=report_teacher_today,
-#     relief="flat",
-# )
 
 img0 = PhotoImage(file=f"ASP/Image/exit.png")
 b0 = Button(image=img0, borderwidth=0, highlightthickness=0, command=ex, relief="flat")
 
-b0.place(x=400, y=750)
+b0.place(x=400, y=700)
 
 
 bt5 = PhotoImage(file="ASP/Image/bt_report.png")
@@ -175,7 +195,8 @@ button_5 = Button(
     command=report_teacher_today,
     relief="flat",
 )
-button_5.place(x=900, y=750)
+button_5.place(x=900, y=700)
 
 
 a.mainloop()
+

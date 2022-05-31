@@ -11,6 +11,7 @@ a.geometry("1500x900")
 a.attributes("-fullscreen", True)
 
 
+
 def check_in():
     import cv2
     import pymysql
@@ -93,12 +94,12 @@ def check_in():
                 key = cv2.waitKey(1) & 0xFF == ord("q")
                 if key or conf <= 38:
                     break
-            try:
+            # try:
                 connection = pymysql.connect(
                     host="localhost", user="root", password="", database="asp_base"
                 )
                 conn = connection.cursor()
-                if str(profile[5]) == "309" and str(profile[6]) == "CS6B":
+                if str(profile[5]) == "309" and str(profile[6]) == "HCS6B":
                     timee = datetime.now().strftime("%H:%M:%S")
                     a = 0
                     b = 1
@@ -141,8 +142,8 @@ def check_in():
                         )
                         conn.execute(insert_data, VALUES)
                         connection.commit()
-            except Exception as e:
-                print(e)
+            # except Exception as e:
+            #     print(e)
 
             cam.release()
             cv2.destroyAllWindows()
@@ -321,7 +322,7 @@ button_1 = Button(
     command=check_in,
     relief="flat",
 )
-button_1.place(x=200, y=100)
+button_1.place(x=250, y=380)
 
 bt2 = PhotoImage(file="ASP/Image/bt_checkOut.png")
 button_2 = Button(
@@ -331,7 +332,7 @@ button_2 = Button(
     command=Exit_Room,
     relief="flat",
 )
-button_2.place(x=950, y=100)
+button_2.place(x=950, y=380)
 
 bt3 = PhotoImage(file="ASP/Image/bt_break.png")
 button_3 = Button(
@@ -341,7 +342,7 @@ button_3 = Button(
     # command=auto_att,
     relief="flat",
 )
-button_3.place(x=600, y=450)
+button_3.place(x=950, y=700)
 
 bt4 = PhotoImage(file="ASP/Image/back.png")
 button_4 = Button(
@@ -351,7 +352,17 @@ button_4 = Button(
     command=back,
     relief="flat",
 )
-button_4.place(x=200, y=700)
+button_4.place(x=300, y=700)
+
+bt5 = PhotoImage(file="ASP/Image/bt_start_class.png")
+button_5 = Button(
+    image=bt5,
+    borderwidth=0,
+    highlightthickness=0,
+    # command=back,
+    relief="flat",
+)
+button_5.place(x=900, y=150)
 
 
 a.mainloop()
