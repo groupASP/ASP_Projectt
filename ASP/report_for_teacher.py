@@ -6,6 +6,8 @@ import pymysql
 from tkinter import messagebox
 import os
 from datetime import *
+import pandas as pd
+import tkinter.filedialog as fd
 
 a = tkinter.Tk()
 a.geometry("1500x900")
@@ -176,9 +178,9 @@ cb_subject.configure(font=("Saysettha OT", 20), state="readonly")
 cb_subject.option_add("*font", cbFont)
 cb_subject.current(0)
 
-bts = tkinter.Button(b, text="Back", command=back, width=20)
-bts.place(x=550, y=750)
-bts.configure(font=("Saysettha OT", 18), bg="green", fg="white")
+bt_back = tkinter.Button(b, text="Back", command=back, width=16)
+bt_back.place(x=300, y=750)
+bt_back.configure(font=("Times New Roman", 25), bg="#CEC2C2", fg="black")
 
 
 img0 = PhotoImage(file=f"ASP/Image/exit.png")

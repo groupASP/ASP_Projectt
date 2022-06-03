@@ -1,17 +1,19 @@
-from win10toast import ToastNotifier
-# import time
+import tkinter as tk
 
-toaster = ToastNotifier()
-toaster.show_toast("Hello World!!!",
-                   "Python is 10 seconds awsm!",
-                   icon_path=None,
-                   duration=3,
-                   threaded=False)
 
-# toaster.show_toast("Example two",
-#                    "This notification is in it's own thread!",
-#                    icon_path=None,
-#                    duration=5,
-#                    threaded=True)
-# # Wait for threaded notification to finish
-# while toaster.notification_active(): time.sleep(0.1)
+class RoundedButton(tk.Canvas):
+        
+    def border(self, event):
+        if event.type == "4":
+            self.itemconfig(self.rect, fill="#d2d6d3")
+
+        else:
+            self.itemconfig(self.rect, fill=self.btnbackground)
+
+def func():
+    print("Button pressed")
+
+root = tk.Tk()
+btn = RoundedButton(text="This is a \n rounded button", radius=100, btnbackground="#0078ff", btnforeground="#ffffff", clicked=func)
+btn.pack(expand=True, fill="both")
+root.mainloop()
