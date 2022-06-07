@@ -26,6 +26,11 @@ def report_no_qualified():
     a.withdraw()
     os.system("D:\ASP_Project\ASP\\report_no_qualified.py")
 
+def report_one():
+    a.withdraw()
+    os.system("D:\ASP_Project\ASP\\report_one_student.py")
+
+
 
 
 
@@ -54,7 +59,7 @@ button_1 = Button(
     command=report_today,
     relief="flat",
 )
-button_1.place(x=200, y=100)
+button_1.place(x=100, y=100)
 
 bt2 = PhotoImage(file="ASP/Image/report2.png")
 button_2 = Button(
@@ -64,7 +69,17 @@ button_2 = Button(
     command=report_midterm,
     relief="flat",
 )
-button_2.place(x=950, y=100)
+button_2.place(x=590, y=110)
+
+bt6 = PhotoImage(file="ASP/Image/bt_report_one.png")
+button_6 = Button(
+    image=bt6,
+    borderwidth=0,
+    highlightthickness=0,
+    command=report_one,
+    relief="flat",
+)
+button_6.place(x=1050, y=100)
 
 bt3 = PhotoImage(file="ASP/Image/report3.png")
 button_3 = Button(
@@ -94,7 +109,7 @@ button_5= Button(
     command=back,
     relief="flat",
 )
-button_5.place(x=200, y=700)
+button_5.place(x=650, y=730)
 
 
 a.mainloop()

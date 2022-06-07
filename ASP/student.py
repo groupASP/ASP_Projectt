@@ -191,6 +191,7 @@ def delete():
                 row[6],
                 row[7],
                 row[8],
+                row[9]
             ),
         )
         i = i + 1

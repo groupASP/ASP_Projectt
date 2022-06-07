@@ -1,3 +1,4 @@
+from tabnanny import check
 from tkinter import *
 import tkinter
 from tkinter import ttk
@@ -5,6 +6,7 @@ import pymysql
 from tkinter import messagebox
 import os
 from datetime import *
+import datetime as dt
 import pytz
 from tkinter import font as tkFont
 
@@ -14,11 +16,12 @@ a.attributes("-fullscreen", True)
 
 
 def Insert_Data():
+    global connection, conn
+
     def Insert_Student():
-        global connection, conn
         cl_Id = cb_class.get()
         d_Id = cb_day.get()
-        r_Id = "r_308"
+        r_Id = "308"
         connection = pymysql.connect(
             host="localhost", user="root", password="", database="asp_base"
         )
@@ -42,12 +45,46 @@ def Insert_Data():
         result = conn.fetchall()
         return result
 
-    try:
+    def Check_Data():
         profile = Insert_Student()
-        if profile:
-            date = datetime.now().strftime("%Y-%m-%d")
+        d_Name = profile[0][3]
+        cl_Name = profile[0][6]
+        date = datetime.now().strftime("%Y-%m-%d")
+        sql = (
+            "select d_Name, cl_Name, date from tb_attandance where date='"
+            + date
+            + "' and cl_Name='"
+            + str(cl_Name)
+            + "' and d_Name='"
+            + str(d_Name)
+            + "'LIMIT 1"
+        )
+        conn.execute(sql)
+        result = conn.fetchall()
+        return result
+
+    def get_date():
+        my_data = Check_Data()
+        if my_data:
+            day = str(my_data[0][0])
+            clas = str(my_data[0][1])
+            date = str(my_data[0][2])
+            return day, clas, date
+        else:
+            my_day = ""
+            my_class = ""
+            my_data = dt.date(2022, 1, 1)
+            return str(my_day), str(my_class), str(my_data)
+
+    try:
+        data = get_date()
+        date = datetime.now().strftime("%Y-%m-%d")
+        a = 1
+        b = 1
+        profile = Insert_Student()
+        if data != (str(profile[0][3]), str(profile[0][6]), date):
             for i in profile:
-                insert_data = "INSERT INTO tb_attandance(a_Id, st_Id, Name, Surname, d_Name, s_Name, r_Name, cl_Name, sc_Period, sc_Year, date) VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+                insert_data = "INSERT INTO tb_attandance(a_Id, st_Id, Name, Surname, d_Name, s_Name, r_Name, cl_Name, sc_Period, sc_Year, first_Absence, second_Absence, date) VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
                 VALUES = (
                     str(i[0]),
                     str(i[1]),
@@ -58,13 +95,18 @@ def Insert_Data():
                     str(i[6]),
                     str(i[7]),
                     str(i[8]),
+                    str(a),
+                    str(b),
                     date,
                 )
                 conn.execute(insert_data, VALUES)
                 connection.commit()
             messagebox.showinfo("Success", "ບັນທຶກຂໍ້ມູນສຳເລັດ")
         else:
-            messagebox.showerror("Error", "ບໍ່ມີຂໍ້ມູນນັກສຶກສາໃນຫລັກສູດນີ້")
+            messagebox.showerror(
+                "Error",
+                "ບໍ່ມີຂໍ້ມູນນັກສຶກສາໃນຫລັກສູດນີ້ ຫຼື ມີຂໍ້ມູນນັກສຶກສາໃນຫລັກສູດນີ້ແລ້ວ",
+            )
     except Exception as e:
         # print(e)
         messagebox.showerror("Error", e)
@@ -376,7 +418,7 @@ canvas = Canvas(
 
 canvas.place(x=0, y=0)
 
-background_img = PhotoImage(file="ASP/Image/bg_309.png")
+background_img = PhotoImage(file="ASP/Image/bg_308.png")
 background = canvas.create_image(950.0, 540.0, image=background_img)
 
 bt1 = PhotoImage(file="ASP/Image/bt_checkIn.png")
@@ -467,4 +509,3 @@ cb_day.option_add("*font", cbFont)
 cb_day.current(0)
 
 a.mainloop()
-
