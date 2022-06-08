@@ -189,39 +189,89 @@ background = canvas.create_image(950.0, 540.0, image=background_img)
 
 img1 = PhotoImage(file=f"ASP/Image/add.png")
 btAdd = Button(
-    image=img1, borderwidth=0, highlightthickness=0, command=insert, relief="flat"
+    image=img1, 
+    borderwidth=0,
+    highlightthickness=0, 
+    command=insert, relief="flat"
 )
 btAdd.place(
     x=480,
-    y=650,
+    y=750,
 )
 
 img2 = PhotoImage(file=f"ASP/Image/back.png")
 btBack = Button(
-    image=img2, borderwidth=0, highlightthickness=0, command=back, relief="flat"
+    image=img2, 
+    borderwidth=0, 
+    highlightthickness=0, 
+    command=back, 
+    relief="flat"
 )
 btBack.place(
     x=100,
-    y=650,
+    y=750,
 )
 
 img3 = PhotoImage(file=f"ASP/Image/delete.png")
 btDelete = Button(
-    image=img3, borderwidth=0, highlightthickness=0, command=delete, relief="flat"
+    image=img3, 
+    borderwidth=0, 
+    highlightthickness=0, 
+    command=delete, 
+    relief="flat"
 )
 btDelete.place(
     x=1200,
-    y=650,
+    y=750,
 )
 
 img4 = PhotoImage(file=f"ASP/Image/edit.png")
 btEdit = Button(
-    image=img4, borderwidth=0, highlightthickness=0, command=edit, relief="flat"
+    image=img4, 
+    borderwidth=0, 
+    highlightthickness=0, 
+    command=edit, 
+    relief="flat"
 )
 btEdit.place(
     x=840,
-    y=650,
+    y=750,
 )
+
+
+img_search = PhotoImage(file=f"ASP/Image/bt_search.png")
+btsearch = Button(
+    image=img_search,
+    borderwidth=0,
+    highlightthickness=0,
+    # command=delete,
+    relief="flat")
+btsearch.place(
+    x=1360, y=90, )
+
+
+lb_search = tkinter.Label(a, text="ຄົ້ນຫາ :")
+lb_search.place(x=1000, y=85)
+lb_search.config(font=("Saysettha OT", 18),bg="#ECF8DC")
+
+
+entry0_img = PhotoImage(file = f"ASP/Image/img_textBox0.png")
+entry0_bg = canvas.create_image(
+    305.5, 357.0,
+    image = entry0_img)
+
+entry0 = Entry(
+    font=("Times New Roman",20),
+    bd = 0,
+    bg = "#e5e5e5",
+    highlightthickness = 0)
+
+entry0.place(
+    x = 1100.0,
+     y = 80,
+    width = 250,
+    height = 50)
+
 
 st = ttk.Style()
 st.theme_use("clam")
@@ -230,18 +280,19 @@ st.configure("Treeview", rowheight=50, font=("Saysettha OT", 12))
 
 
 tree = ttk.Treeview(a)
-tree["columns"] = ("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
-tree.column("#0", width=5)
-tree.column("#1", width=100)
-tree.column("#2", width=100)
-tree.column("#3", width=100)
-tree.column("#4", width=150)
-tree.column("#5", width=150)
-tree.column("#6", width=150)
-tree.column("#7", width=130)
-tree.column("#8", width=140)
-tree.column("#9", width=280)
-tree.column("#10", width=150)
+tree["columns"] = ("1", "2", "3", "4", "5", "6", "7", "8", "9", "10",'11')
+tree.column("#0", width=1)
+tree.column("#1", width=50, anchor="center")
+tree.column("#2", width=100, anchor="center")
+tree.column("#3", width=100, anchor="center")
+tree.column("#4", width=150, anchor="center")
+tree.column("#5", width=150, anchor="center")
+tree.column("#6", width=150, anchor="center")
+tree.column("#7", width=130, anchor="center")
+tree.column("#8", width=140, anchor="center")
+tree.column("#9", width=280, anchor="center")
+tree.column("#10", width=150, anchor="center")
+tree.column("#11", width=130, anchor="center")
 
 tree.heading("#1", text="ລະຫັດ")
 tree.heading("#2", text="ມື້")
@@ -253,6 +304,7 @@ tree.heading("#7", text="ຫ້ອງຮຽນ")
 tree.heading("#8", text="ຊັ້ນຮຽນ")
 tree.heading("#9", text="ວິຊາຮຽນ")
 tree.heading("#10", text="ອາຈານ")
+tree.heading("#11", text="ສະຖານະ")
 
 # ຄຳສັ່ງສະແດງຜົນ
 
@@ -276,7 +328,7 @@ for row in conn:
         ),
     )
     i = i + 1
-tree.place(x=30, y=80)
+tree.place(x=10, y=150)
 
 ############################################################################################################
 ############################################################################################################

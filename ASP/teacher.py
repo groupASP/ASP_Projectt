@@ -8,9 +8,6 @@ import pymysql
 
 a = tkinter.Tk()
 a.geometry("1500x900")
-
-
-# a.title("display from database")
 a.attributes('-fullscreen', True)
 
 # ຄຳສັ່ງເຊື່ອມຕໍ່
@@ -124,7 +121,7 @@ def delete():
     for i in tree.get_children():
         tree.delete(i)
 
-    sql_select = "select * from tb_student;"
+    sql_select = "select * from tb_teacher;"
     conn.execute(sql_select)
 
     i = 0
@@ -139,9 +136,7 @@ def insert():
     os.system("D:\ASP_Project\ASP\insert_teacher.py")
 
 
-'''lb=tkinter.Label(a,text="ລາຍຊື່ນັກສຶກສາ")
-lb.place(x=50,y=20)
-lb.config(font=("Saysettha OT",20),fg="red")'''
+
 canvas = Canvas(
     a,
     bg="#ffffff",
@@ -165,7 +160,7 @@ btAdd = Button(
     command=insert,
     relief="flat")
 btAdd.place(
-    x=480, y=650, )
+    x=480, y=750, )
 
 img2 = PhotoImage(file=f"ASP/Image/back.png")
 btBack = Button(
@@ -175,7 +170,7 @@ btBack = Button(
     command=back,
     relief="flat")
 btBack.place(
-    x=100, y=650, )
+    x=100, y=750, )
 
 img3 = PhotoImage(file=f"ASP/Image/delete.png")
 btDelete = Button(
@@ -185,17 +180,45 @@ btDelete = Button(
     command=delete,
     relief="flat")
 btDelete.place(
-    x=1200, y=650, )
+    x=1200, y=750, )
 
-img4 = PhotoImage(file=f"ASP/Image/edit.png")
-btEdit = Button(
-    image=img4,
+
+img_search = PhotoImage(file=f"ASP/Image/bt_search.png")
+btsearch = Button(
+    image=img_search,
     borderwidth=0,
     highlightthickness=0,
-    command=edit,
+    # command=delete,
     relief="flat")
-btEdit.place(
-    x=840, y=650, )
+btsearch.place(
+    x=1360, y=90, )
+
+
+lb_search = tkinter.Label(a, text="ຄົ້ນຫາ :")
+lb_search.place(x=1000, y=85)
+lb_search.config(font=("Saysettha OT", 18),bg="#ECF8DC")
+
+
+entry0_img = PhotoImage(file = f"ASP/Image/img_textBox0.png")
+entry0_bg = canvas.create_image(
+    305.5, 357.0,
+    image = entry0_img)
+
+entry0 = Entry(
+    font=("Times New Roman",20),
+    bd = 0,
+    bg = "#e5e5e5",
+    highlightthickness = 0)
+
+entry0.place(
+    x = 1100.0,
+     y = 80,
+    width = 250,
+    height = 50)
+
+
+
+
 
 st = ttk.Style()
 st.theme_use("clam")
@@ -207,18 +230,19 @@ sql = "select* from tb_teacher"
 conn.execute(sql)
 
 tree = ttk.Treeview(a)
-tree["columns"] = ("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
-tree.column("#0", width=1)
-tree.column("#1", width=100, anchor="center")
-tree.column("#2", width=150, anchor="center")
-tree.column("#3", width=180, anchor="center")
+tree["columns"] = ("1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11")
+tree.column("#0", width=-4)
+tree.column("#1", width=80, anchor="center")
+tree.column("#2", width=140, anchor="center")
+tree.column("#3", width=150, anchor="center")
 tree.column("#4", width=60, anchor="center")
 tree.column("#5", width=150, anchor="center")
 tree.column("#6", width=150, anchor="center")
 tree.column("#7", width=180, anchor="center")
 tree.column("#8", width=150, anchor="center")
 tree.column("#9", width=200, anchor="center")
-tree.column("#10", width=180, anchor="center")
+tree.column("#10", width=170, anchor="center")
+tree.column("#11", width=100, anchor="center")
 
 tree.heading("#1", text="ລະຫັດ")
 tree.heading("#2", text="ຊື່")
@@ -230,6 +254,7 @@ tree.heading("#7", text="ແຂວງ")
 tree.heading("#8", text="ເບີໂທ")
 tree.heading("#9", text="ອີເມວ")
 tree.heading("#10", text="ວຸດທິ")
+tree.heading("#11", text="ສະຖານະ")
 
 # ຄຳສັ່ງສະແດງຜົນ
 
@@ -237,7 +262,7 @@ i = 0
 for row in conn:
     tree.insert('', i, text="", values=(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]))
     i = i + 1
-tree.place(x=1, y=80)
+tree.place(x=1, y=150)
 
 ############################################################################################################
 ############################################################################################################

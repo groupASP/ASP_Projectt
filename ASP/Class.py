@@ -160,14 +160,16 @@ st.configure("Treeview.Heading", foreground="blue", font=("Saysettha OT", 16))
 st.configure('Treeview', rowheight=50, font=("Saysettha OT", 14))
 
 tree = ttk.Treeview(frm)
-tree['columns'] = ('1', '2')
+tree['columns'] = ('1', '2','3')
 
 tree.column('#0', width=0,anchor='center')
 tree.column('#1', width=300, anchor='center')
-tree.column('#2', width=600, anchor='center')
+tree.column('#2', width=400, anchor='center')
+tree.column('#3', width=150, anchor='center')
 
 tree.heading('#1', text='ລະຫັດ')
 tree.heading('#2', text='ຊື່')
+tree.heading('#3', text='ສະຖານະ')
 
 
 
@@ -180,7 +182,7 @@ tree.place(x=150, y=100)
 
 ############################################################################
 
-frm.geometry('1600x700')
+# frm.geometry('1600x700')
 
 lb2 = tk.Label(frm, text="ຟອມແກ້ໄຂຂໍ້ມູນຊັ້ນຮຽນ")
 lb2.place(x=1150, y=100)
